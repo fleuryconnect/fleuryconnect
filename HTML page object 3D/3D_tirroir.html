@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Viewer 3D - model-viewer</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body { margin:0; background:#111; display:flex; justify-content:center; align-items:center; height:100vh; }
+    model-viewer { width: 80vw; height: 80vh; background: #111; }
+  </style>
+</head>
+<body>
+
+<model-viewer 
+  src="../comp/tirroir.glb" 
+  ar 
+  camera-controls 
+  touch-action="pan-y" 
+  environment-image="neutral" 
+  shadow-intensity="1">
+</model-viewer>
+
+</body>
+</html>
