@@ -1,0 +1,185 @@
+/* ==========================================================================
+   VERSION MOBILE & TABLETTE
+   Ce fichier prend le dessus sur style.css pour les écrans < 991px
+   ========================================================================== */
+
+:root {
+    /* On réduit légèrement les rayons des courbures pour gagner de l'espace */
+    --radius: 8px;
+}
+
+body {
+    /* Empêche le scroll horizontal accidentel */
+    overflow-x: hidden;
+    /* Texte de base un peu plus lisible mais pas trop gros */
+    font-size: 15px; 
+}
+
+/* -----------------------------------------------------------
+   1. NAVIGATION (ADAPTATIVE)
+   ----------------------------------------------------------- */
+nav {
+    /* Fond plus opaque pour la lisibilité par-dessus le contenu */
+    background: rgba(30, 41, 59, 0.98); 
+    padding: 10px 15px;
+    
+    /* Par défaut sur petit mobile : Colonne (Empilé) */
+    flex-direction: column;
+    gap: 5px;
+}
+
+nav a {
+    width: 100%;
+    text-align: center;
+    padding: 12px 0; /* Zone de touche plus haute (Tactile) */
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 1rem;
+}
+
+nav a:last-child {
+    border-bottom: none;
+}
+
+/* -----------------------------------------------------------
+   2. HERO SECTION & TYPOGRAPHIE
+   ----------------------------------------------------------- */
+.hero {
+    /* On retire la hauteur forcée (min-height: 80vh) pour éviter les grands vides */
+    min-height: auto;
+    
+    /* Padding haut important pour compenser la nav fixe */
+    padding-top: 140px; 
+    padding-bottom: 60px;
+}
+
+.hero h1 {
+    /* clamp(min, ideal, max) : Le texte grossit fluidement avec la largeur du téléphone */
+    font-size: clamp(2rem, 9vw, 3.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.15;
+}
+
+.hero p {
+    font-size: 1rem;
+    padding: 0 10px;
+    margin-bottom: 2rem;
+}
+
+section {
+    padding: 50px 20px;
+}
+
+h2 {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+}
+
+/* -----------------------------------------------------------
+   3. GRILLE INTELLIGENTE (Gère les téléphones larges)
+   ----------------------------------------------------------- */
+.card-grid {
+    /* MAGIE : 
+       - Si l'écran est petit (< 600px) -> 1 colonne.
+       - Si l'écran est large (tablette/tel paysage) -> 2 colonnes auto.
+       minmax(280px, 1fr) empêche les cartes de devenir trop petites.
+    */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    padding: 25px;
+    /* Important pour que les cartes aient la même hauteur sur une ligne */
+    height: 100%; 
+}
+
+.card h3 {
+    font-size: 1.3rem;
+}
+
+/* Annulation des effets de survol complexes (qui peuvent buguer au tactile) */
+.card:hover {
+    transform: none;
+    box-shadow: var(--shadow-sm); /* On garde l'ombre simple */
+}
+
+/* -----------------------------------------------------------
+   4. TABLEAUX (SCROLLABLE)
+   ----------------------------------------------------------- */
+.spec-table {
+    display: block; /* Nécessaire pour le scroll */
+    width: 100%;
+    overflow-x: auto; /* Scroll horizontal si ça dépasse */
+    white-space: nowrap; /* Force le texte à rester sur une ligne */
+    -webkit-overflow-scrolling: touch; /* Fluidité iOS */
+    margin: 2rem 0;
+    font-size: 0.9rem;
+}
+
+.spec-table th, .spec-table td {
+    padding: 1rem;
+}
+
+/* -----------------------------------------------------------
+   5. BOUTONS (OPTIMISATION TACTILE)
+   ----------------------------------------------------------- */
+.btn_3d {
+    width: 100%; /* Prend toute la largeur disponible */
+    max-width: 400px; /* ...mais s'arrête à 400px sur les grands écrans */
+    margin: 0 auto; /* Centré si l'écran est large */
+    display: flex; /* Flex pour bien centrer le texte/icône */
+    padding: 16px 20px; /* Plus gros pour le doigt */
+    font-size: 1rem;
+    
+    /* Ombre un peu réduite en hauteur pour mobile */
+    box-shadow: 0 4px 0 #229954, 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.btn_3d:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #229954;
+}
+
+/* Pas de hover transform sur mobile */
+.btn_3d:hover {
+    transform: none;
+    background: var(--primary); 
+    box-shadow: 0 4px 0 #229954;
+}
+
+footer {
+    padding: 40px 20px 80px 20px; /* Marge en bas pour les barres d'outils navigateur */
+}
+
+/* ==========================================================================
+   MEDIA QUERY INTERNE : TÉLÉPHONES LARGES & TABLETTES
+   S'applique dès que l'écran dépasse 550px de large
+   (Mode paysage ou gros modèles)
+   ========================================================================== */
+@media (min-width: 550px) {
+    
+    /* On repasse la nav en ligne pour gagner de la place verticale */
+    nav {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap; /* Si ça dépasse, ça passe à la ligne proprement */
+    }
+
+    nav a {
+        width: auto; /* Taille naturelle */
+        padding: 8px 16px;
+        margin: 0 5px;
+        border-bottom: none;
+        background: rgba(255,255,255,0.05); /* Petit fond discret */
+        border-radius: 6px;
+    }
+
+    .hero {
+        padding-top: 120px; /* Moins d'espace nécessaire car nav plus petite */
+    }
+
+    /* Le titre peut être plus gros */
+    .hero h1 {
+        font-size: 3rem;
+    }
+}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fiche technique complète de FleuryConnect : composants électroniques, fonctionnement et spécifications du produit fini.">
+    <title>Fiche Technique | FleuryConnect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="menu-icon" id="openMenu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+    
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" id="closeMenu">&times;</a>
+        <div class="sidenav-content">
+            <a href="index.html" >Accueil</a>
+            <a href="conception.html">Conception 3D</a>
+            <a href="technique.html" class="active">Fiche Technique</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </div>
+
+    <header class="hero">
+        <h1>Fiche Technique</h1>
+        <p> Découvrez les composants et le fonctionnement de FleuryConnect, un produit prêt à l'emploi.</p>
+    </header>
+
+    <section>
+        <h2>Composants Électroniques</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h4>🔌 Arduino Nano</h4>
+                <p><strong>Microcontrôleur principal</strong> - Cœur du système qui gère toutes les opérations : 
+                lecture des capteurs, affichage LCD, contrôle des LED.</p>
+                <ul class="feature-list" style="margin-top: 1rem;">
+                    <li>Processeur : ATmega328P</li>
+                    <li>Tension : 5V</li>
+                    <li>14 broches digitales I/O</li>
+                    <li>8 broches analogiques</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>💧 Capteur d'Humidité</h4>
+                <p><strong>Capteur capacitif</strong> - Mesure la teneur en eau du sol sans contact direct avec les racines, 
+                préservant ainsi la santé de la plante.</p>
+                <ul class="feature-list" style="margin-top: 1rem;">
+                    <li>Type : Capacitif (FC-28 ou équivalent)</li>
+                    <li>Tension : 3.3V - 5V</li>
+                    <li>Sortie : Analogique (0-1023)</li>
+                    <li>Précision : Adaptable par calibration</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>🖥️ Écran LCD</h4>
+                <p><strong>Affichage 16x2</strong> - Affiche l'heure en temps réel et peut également montrer le niveau d'humidité 
+                sur demande.</p>
+                <ul class="feature-list" style="margin-top: 1rem;">
+                    <li>Type : LCD 16x2 avec rétroéclairage</li>
+                    <li>Interface : I2C (communication optimisée)</li>
+                    <li>Contraste : Réglable</li>
+                    <li>Consommation : Faible</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>🔴 LED d'Alerte</h4>
+                <p><strong>Indicateur visuel</strong> - LED rouge qui s'allume lorsque l'humidité est insuffisante, 
+                attirant l'attention de manière discrète mais efficace.</p>
+                <ul class="feature-list" style="margin-top: 1rem;">
+                    <li>Couleur : Rouge (haute visibilité)</li>
+                    <li>Tension : 5V</li>
+                    <li>Résistance : 220Ω (protection)</li>
+                    <li>Mode : Clignotant ou fixe</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 4rem;">Algorithme d'Alerte</h2>
+        <div class="card">
+            <h3>Logique de Fonctionnement</h3>
+            <p>Le système utilise un algorithme intelligent qui analyse les variations d'humidité pour déterminer 
+            quand une alerte est nécessaire.</p>
+            
+            <div style="background: var(--light); padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; border-left: 4px solid var(--primary);">
+                <h4 style="margin-top: 0;">Fonctionnement du système :</h4>
+                <p style="line-height: 1.8; color: var(--dark); margin: 0;">
+                    FleuryConnect fonctionne de manière autonome. Le système lit en continu le niveau d'humidité du sol 
+                    via le capteur intégré. Si l'humidité descend sous le seuil critique (30% par défaut), la LED d'alerte 
+                    s'allume automatiquement pour vous rappeler d'arroser vos plantes. L'écran LCD affiche l'heure en temps réel, 
+                    faisant de FleuryConnect un objet utile au quotidien.
+                </p>
+            </div>
+
+            <h4 style="margin-top: 2rem;">Fonctionnalités Avancées</h4>
+            <ul class="feature-list">
+                <li><strong>Filtrage des valeurs</strong> : Moyenne glissante pour éviter les faux positifs dus aux variations momentanées</li>
+                <li><strong>Hystérésis</strong> : Seuil différent pour l'activation et la désactivation de l'alerte (évite le clignotement)</li>
+                <li><strong>Calibration</strong> : Possibilité d'ajuster le seuil selon le type de plante</li>
+                <li><strong>Mode économie</strong> : Réduction de la fréquence de lecture en mode normal</li>
+            </ul>
+        </div>
+
+        <h2 style="margin-top: 4rem;">Spécifications Techniques</h2>
+        <table class="spec-table">
+            <thead>
+                <tr>
+                    <th>Paramètre</th>
+                    <th>Valeur</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tension d'alimentation</strong></td>
+                    <td>5V (via USB ou adaptateur)</td>
+                </tr>
+                <tr>
+                    <td><strong>Consommation électrique</strong></td>
+                    <td>~150-200 mA (mode normal)</td>
+                </tr>
+                <tr>
+                    <td><strong>Fréquence de lecture</strong></td>
+                    <td>1 Hz (1 fois par seconde)</td>
+                </tr>
+                <tr>
+                    <td><strong>Seuil d'humidité par défaut</strong></td>
+                    <td>30% (ajustable)</td>
+                </tr>
+                <tr>
+                    <td><strong>Plage de mesure</strong></td>
+                    <td>0-100% (humidité relative du sol)</td>
+                </tr>
+                <tr>
+                    <td><strong>Précision du capteur</strong></td>
+                    <td>±5% (après calibration)</td>
+                </tr>
+                <tr>
+                    <td><strong>Température de fonctionnement</strong></td>
+                    <td>0°C à 50°C</td>
+                </tr>
+                <tr>
+                    <td><strong>État du produit</strong></td>
+                    <td>Prêt à l'emploi, assemblé et programmé</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p><strong>FleuryConnect</strong> - Projet STI2D</p>
+        <p>Lycée Cormontaigne</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">© 2024 - Tous droits réservés</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
